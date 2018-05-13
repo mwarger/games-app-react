@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aws-amplify": "^0.3.3",
+    "aws-amplify-react": "^0.1.43",
     "react": "^16.3.2",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.3.2",
+    "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.2.2",
     "react-scripts-parcel": "0.0.19"
   },
