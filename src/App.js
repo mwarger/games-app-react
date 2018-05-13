@@ -1,48 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Link } from 'react-router-dom';
+import { Navbar } from 'react-bootstrap';
 import './App.css';
+import Routes from './Routes';
 
 class App extends Component {
-  state = { toggle: true };
-  toggleToggle = () => this.setState({ toggle: !this.state.toggle });
   render() {
-    const { toggle } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>
-            This app is built with <br />React ⚛️ + Parcel 📦!
-          </h1>
-          <img
-            src={logo}
-            onClick={this.toggleToggle}
-            className={'App-logo ' + (toggle && 'Logo-spin')}
-            alt="logo"
-          />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <A href="https://reactjs.org/">Learn React</A>
-          <A href="https://parceljs.org/getting_started.html">Learn Parcel</A>
-        </header>
+      <div className="App container">
+        <Navbar fluid collapseOnSelect>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <Link to="/">Gamer Fi</Link>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+        </Navbar>
+        <Routes />
       </div>
     );
   }
 }
 
-function A(props) {
-  // you can use object spread because babel-preset-react-app is set up for you
-  const { href, children, ...rest } = props;
-  return (
-    <a
-      className="App-link"
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      {...rest}
-    >
-      {children}
-    </a>
-  );
-}
 export default App;
