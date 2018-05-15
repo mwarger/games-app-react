@@ -30,7 +30,7 @@ export default class Home extends Component {
   }
 
   games() {
-    return API.get('games', '/games');
+    return API.get('prod-games-app-api', '/games');
   }
 
   renderGamesList(games) {
@@ -76,7 +76,6 @@ export default class Home extends Component {
   renderGames() {
     return (
       <div className="games">
-        <PageHeader>Your Games</PageHeader>
         <ListGroup>
           {!this.state.isLoading && this.renderGamesList(this.state.games)}
         </ListGroup>

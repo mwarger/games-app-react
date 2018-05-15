@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Authenticator } from 'aws-amplify-react';
 import { Button } from 'react-bootstrap';
+import aws_exports from '../aws-exports';
 
 const Buttons = ({ facebookSignIn, googleSignIn, prefix }) => {
   return (
@@ -27,7 +28,6 @@ const Buttons = ({ facebookSignIn, googleSignIn, prefix }) => {
 };
 
 export default class AuthComponent extends Component {
-  state = { enabledFederated: false };
   handleStateChange = state => {
     console.log(state);
     if (state === 'signedIn') {
@@ -35,13 +35,9 @@ export default class AuthComponent extends Component {
     }
   };
 
-  enabledSocialLogin = () => {
-    this.setState({ enabledFederated: !this.state.enabledFederated });
-  };
-
   render() {
     const federated = {
-      google_client_id: '123',
+      google_client_id: aws_exports.aws_google_web_app_id,
       facebook_app_id: '456'
     };
 
@@ -53,20 +49,10 @@ export default class AuthComponent extends Component {
           justifyContent: 'center'
         }}
       >
-        <Button
-          style={{ width: '500px', margin: '0 auto' }}
-          onClick={this.enabledSocialLogin}
-        >
-          Enabled Social Login
-        </Button>
-        {this.state.enabledFederated ? (
-          <Authenticator
-            onStateChange={this.handleStateChange}
-            federated={federated}
-          />
-        ) : (
-          <Authenticator onStateChange={this.handleStateChange} />
-        )}
+        <Authenticator
+          onStateChange={this.handleStateChange}
+          federated={federated}
+        />
       </div>
     );
   }

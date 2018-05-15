@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API, Storage } from 'aws-amplify';
+import { API, Storage, Auth } from 'aws-amplify';
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import LoaderButton from '../components/LoaderButton';
 import config from '../config';
@@ -8,6 +8,7 @@ import './Games.css';
 import { s3Upload } from '../libs/awsLib';
 
 import { Analytics } from 'aws-amplify';
+import Reviews from './Reviews';
 
 export default class Games extends Component {
   constructor(props) {
@@ -25,6 +26,11 @@ export default class Games extends Component {
   }
 
   async componentDidMount() {
+    const {
+      data: { IdentityId }
+    } = await Auth.currentCredentials();
+
+    console.log('auth stuff', IdentityId);
     try {
       let attachmentURL;
       const game = await this.getGame();
@@ -37,7 +43,8 @@ export default class Games extends Component {
       this.setState({
         game,
         content,
-        attachmentURL
+        attachmentURL,
+        userId: IdentityId
       });
 
       Analytics.record('gameVisit', { content });
@@ -47,7 +54,10 @@ export default class Games extends Component {
   }
 
   getGame() {
-    return API.get('games', `/games/${this.props.match.params.id}`);
+    return API.get(
+      'prod-games-app-api',
+      `/games/${this.props.match.params.id}`
+    );
   }
 
   validateForm() {
@@ -69,9 +79,13 @@ export default class Games extends Component {
   };
 
   saveGame(game) {
-    return API.put('games', `/games/${this.props.match.params.id}`, {
-      body: game
-    });
+    return API.put(
+      'prod-games-app-api',
+      `/games/${this.props.match.params.id}`,
+      {
+        body: game
+      }
+    );
   }
 
   handleSubmit = async event => {
@@ -103,7 +117,10 @@ export default class Games extends Component {
   };
 
   deleteGame() {
-    return API.del('games', `/games/${this.props.match.params.id}`);
+    return API.del(
+      'prod-games-app-api',
+      `/games/${this.props.match.params.id}`
+    );
   }
 
   handleDelete = async event => {
@@ -132,54 +149,67 @@ export default class Games extends Component {
     return (
       <div className="Games">
         {this.state.game && (
-          <form onSubmit={this.handleSubmit}>
-            <FormGroup controlId="content">
-              <FormControl
-                onChange={this.handleChange}
-                value={this.state.content}
-                componentClass="textarea"
-              />
-            </FormGroup>
-            {this.state.game.attachment && (
-              <FormGroup>
-                <ControlLabel>Attachment</ControlLabel>
-                <FormControl.Static>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={this.state.attachmentURL}
-                  >
-                    {this.formatFilename(this.state.game.attachment)}
-                  </a>
-                </FormControl.Static>
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <FormGroup controlId="content">
+                <ControlLabel>Game Title</ControlLabel>
+                <FormControl
+                  onChange={this.handleChange}
+                  value={this.state.content}
+                  componentClass="input"
+                />
               </FormGroup>
-            )}
-            <FormGroup controlId="file">
-              {!this.state.game.attachment && (
-                <ControlLabel>Attachment</ControlLabel>
+              {this.state.game.attachment && (
+                <FormGroup>
+                  <ControlLabel>Cover/Poster</ControlLabel>
+                  <FormControl.Static>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={this.state.attachmentURL}
+                    >
+                      {this.formatFilename(this.state.game.attachment)}
+                    </a>
+                  </FormControl.Static>
+                  <FormControl.Static>
+                    <img
+                      src={this.state.attachmentURL}
+                      style={{ maxHeight: 300 }}
+                    />
+                  </FormControl.Static>
+                </FormGroup>
               )}
-              <FormControl onChange={this.handleFileChange} type="file" />
-            </FormGroup>
-            <LoaderButton
-              block
-              bsStyle="primary"
-              bsSize="large"
-              disabled={!this.validateForm()}
-              type="submit"
-              isLoading={this.state.isLoading}
-              text="Save"
-              loadingText="Saving…"
+              <FormGroup controlId="file">
+                {!this.state.game.attachment && (
+                  <ControlLabel>Attachment</ControlLabel>
+                )}
+                <FormControl onChange={this.handleFileChange} type="file" />
+              </FormGroup>
+              <LoaderButton
+                block
+                bsStyle="primary"
+                bsSize="large"
+                disabled={!this.validateForm()}
+                type="submit"
+                isLoading={this.state.isLoading}
+                text="Save"
+                loadingText="Saving…"
+              />
+              <LoaderButton
+                block
+                bsStyle="danger"
+                bsSize="large"
+                isLoading={this.state.isDeleting}
+                onClick={this.handleDelete}
+                text="Delete"
+                loadingText="Deleting…"
+              />
+            </form>
+            <Reviews
+              gameId={this.props.match.params.id}
+              userId={this.state.userId}
             />
-            <LoaderButton
-              block
-              bsStyle="danger"
-              bsSize="large"
-              isLoading={this.state.isDeleting}
-              onClick={this.handleDelete}
-              text="Delete"
-              loadingText="Deleting…"
-            />
-          </form>
+          </div>
         )}
       </div>
     );

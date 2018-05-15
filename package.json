@@ -10,7 +10,7 @@
     "react-dom": "^16.3.2",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.2.2",
-    "react-scripts-parcel": "0.0.19"
+    "react-scripts-parcel": "0.0.21"
   },
   "scripts": {
     "start": "react-scripts-parcel start",
@@ -30,5 +30,8 @@
       "Firefox ESR",
       "not ie < 11"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1"
   }
 }

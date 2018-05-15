@@ -58,7 +58,7 @@ export default class NewGame extends Component {
   };
 
   createGame(game) {
-    return API.post('games', '/games', {
+    return API.post('prod-games-app-api', '/games', {
       body: game
     });
   }

@@ -689,7 +689,7 @@ babel-plugin-transform-async-to-generator@^6.22.0:
     babel-plugin-syntax-async-functions "^6.8.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-class-properties@6.24.1:
+babel-plugin-transform-class-properties@6.24.1, babel-plugin-transform-class-properties@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-class-properties/-/babel-plugin-transform-class-properties-6.24.1.tgz#6a79763ea61d33d36f37b611aa9def81a81b46ac"
   dependencies:
@@ -5413,9 +5413,9 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-scripts-parcel@0.0.19:
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/react-scripts-parcel/-/react-scripts-parcel-0.0.19.tgz#5b571b9dca386922b6047f2d7c248bda5b07fc76"
+react-scripts-parcel@0.0.21:
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/react-scripts-parcel/-/react-scripts-parcel-0.0.21.tgz#ddb7489d43c2a55c208fc61bb2d64ea6046b5393"
   dependencies:
     "@babel/core" "7.0.0-beta.46"
     "@babel/runtime" "7.0.0-beta.46"
