@@ -26,11 +26,12 @@ export default class Games extends Component {
   }
 
   async componentDidMount() {
-    const {
-      data: { IdentityId }
-    } = await Auth.currentCredentials();
+    const authStuff = await Auth.currentCredentials();
 
     console.log('auth stuff', IdentityId);
+    const {
+      data: { IdentityId }
+    } = authStuff;
     try {
       let attachmentURL;
       const game = await this.getGame();

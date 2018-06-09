@@ -1,1 +1,1 @@
-this project was bootstrapped with <http://github.com/sw-yx/create-react-app-parcel>
+awsmobile init beba5329-9f12-472b-a81e-f73f393b1849

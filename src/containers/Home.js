@@ -14,7 +14,7 @@ export default class Home extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     if (!this.props.isAuthenticated) {
       return;
     }
@@ -27,7 +27,7 @@ export default class Home extends Component {
     }
 
     this.setState({ isLoading: false });
-  }
+  };
 
   games() {
     return API.get('prod-games-app-api', '/games');

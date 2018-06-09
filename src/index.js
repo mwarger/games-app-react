@@ -13,16 +13,6 @@ Amplify.configure(aws_exports);
 Storage.configure({ track: true });
 
 // Amplify.configure({
-//   Analytics: {
-//     // OPTIONAL -  Amazon Pinpoint App Client ID
-//     appId: 'XXXXXXXXXXabcdefghij1234567890ab',
-//     // OPTIONAL -  Amazon service region
-//     region: 'XX-XXXX-X',
-//     // OPTIONAL -  Customized endpoint
-//     endpointId: 'XXXXXXXXXXXX',
-//     // OPTIONAL - disable Analytics if true
-//     disabled: false
-//   },
 //   Auth: {
 //     mandatorySignIn: true,
 //     region: config.cognito.REGION,
