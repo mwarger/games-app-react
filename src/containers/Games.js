@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { API, Storage, Auth } from 'aws-amplify';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
-import LoaderButton from '../components/LoaderButton';
-import config from '../config';
-import './Games.css';
+import React, { Component } from 'react'
+import { API, Storage, Auth } from 'aws-amplify'
+import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
+import LoaderButton from '../components/LoaderButton'
+import config from '../config'
+import './Games.css'
 
-import { s3Upload } from '../libs/awsLib';
+import { s3Upload } from '../libs/awsLib'
 
-import { Analytics } from 'aws-amplify';
-import Reviews from './Reviews';
+import { Analytics } from 'aws-amplify'
+import Reviews from './Reviews'
 
 export default class Games extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.file = null;
+    this.file = null
 
     this.state = {
       isLoading: null,
@@ -22,23 +22,23 @@ export default class Games extends Component {
       game: null,
       content: '',
       attachmentURL: null
-    };
+    }
   }
 
   async componentDidMount() {
-    const authStuff = await Auth.currentCredentials();
+    const authStuff = await Auth.currentCredentials()
 
-    console.log('auth stuff', IdentityId);
+    console.log('auth stuff', IdentityId)
     const {
       data: { IdentityId }
-    } = authStuff;
+    } = authStuff
     try {
-      let attachmentURL;
-      const game = await this.getGame();
-      const { content, attachment } = game;
+      let attachmentURL
+      const game = await this.getGame()
+      const { content, attachment } = game
 
       if (attachment) {
-        attachmentURL = await Storage.vault.get(attachment);
+        attachmentURL = await Storage.vault.get(attachment)
       }
 
       this.setState({
@@ -46,38 +46,46 @@ export default class Games extends Component {
         content,
         attachmentURL,
         userId: IdentityId
-      });
+      })
 
-      Analytics.record('gameVisit', { content });
+      Analytics.record('gameVisit', { content })
     } catch (e) {
-      alert(e);
+      alert(e)
     }
   }
 
-  getGame() {
+  getGame = async () => {
+    const {
+      signInUserSession: {
+        idToken: { jwtToken }
+      }
+    } = await Auth.currentAuthenticatedUser()
     return API.get(
       'prod-games-app-api',
-      `/games/${this.props.match.params.id}`
-    );
+      `/games/${this.props.match.params.id}`,
+      {
+        headers: { Authorization: jwtToken }
+      }
+    )
   }
 
   validateForm() {
-    return this.state.content.length > 0;
+    return this.state.content.length > 0
   }
 
   formatFilename(str) {
-    return str.replace(/^\w+-/, '');
+    return str.replace(/^\w+-/, '')
   }
 
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
-    });
-  };
+    })
+  }
 
   handleFileChange = event => {
-    this.file = event.target.files[0];
-  };
+    this.file = event.target.files[0]
+  }
 
   saveGame(game) {
     return API.put(
@@ -86,65 +94,62 @@ export default class Games extends Component {
       {
         body: game
       }
-    );
+    )
   }
 
   handleSubmit = async event => {
-    let attachment;
+    let attachment
 
-    event.preventDefault();
+    event.preventDefault()
 
     if (this.file && this.file.size > config.MAX_ATTACHMENT_SIZE) {
-      alert('Please pick a file smaller than 5MB');
-      return;
+      alert('Please pick a file smaller than 5MB')
+      return
     }
 
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true })
 
     try {
       if (this.file) {
-        attachment = await s3Upload(this.file);
+        attachment = await s3Upload(this.file)
       }
 
       await this.saveGame({
         content: this.state.content,
         attachment: attachment || this.state.game.attachment
-      });
-      this.props.history.push('/');
+      })
+      this.props.history.push('/')
     } catch (e) {
-      alert(e);
-      this.setState({ isLoading: false });
+      alert(e)
+      this.setState({ isLoading: false })
     }
-  };
+  }
 
   deleteGame() {
-    return API.del(
-      'prod-games-app-api',
-      `/games/${this.props.match.params.id}`
-    );
+    return API.del('prod-games-app-api', `/games/${this.props.match.params.id}`)
   }
 
   handleDelete = async event => {
-    event.preventDefault();
+    event.preventDefault()
 
     const confirmed = window.confirm(
       'Are you sure you want to delete this game?'
-    );
+    )
 
     if (!confirmed) {
-      return;
+      return
     }
 
-    this.setState({ isDeleting: true });
+    this.setState({ isDeleting: true })
 
     try {
-      await this.deleteGame();
-      this.props.history.push('/');
+      await this.deleteGame()
+      this.props.history.push('/')
     } catch (e) {
-      alert(e);
-      this.setState({ isDeleting: false });
+      alert(e)
+      this.setState({ isDeleting: false })
     }
-  };
+  }
 
   render() {
     return (
@@ -213,6 +218,6 @@ export default class Games extends Component {
           </div>
         )}
       </div>
-    );
+    )
   }
 }

@@ -1,36 +1,44 @@
-import React, { Component } from 'react';
-import { PageHeader, ListGroup, ListGroupItem } from 'react-bootstrap';
-import './Home.css';
+import React, { Component } from 'react'
+import { PageHeader, ListGroup, ListGroupItem } from 'react-bootstrap'
+import './Home.css'
 
-import { API } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify'
 
 export default class Home extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       isLoading: true,
       games: []
-    };
+    }
   }
 
   componentDidMount = async () => {
     if (!this.props.isAuthenticated) {
-      return;
+      return
     }
 
     try {
-      const games = await this.games();
-      this.setState({ games });
+      const games = await this.games()
+      this.setState({ games })
     } catch (e) {
-      alert(e);
+      alert(e)
     }
 
-    this.setState({ isLoading: false });
-  };
+    this.setState({ isLoading: false })
+  }
 
-  games() {
-    return API.get('prod-games-app-api', '/games');
+  games = async () => {
+    const {
+      signInUserSession: {
+        idToken: { jwtToken }
+      }
+    } = await Auth.currentAuthenticatedUser()
+    // console.log('response', response)
+    return API.get('prod-games-app-api', '/games', {
+      headers: { Authorization: jwtToken }
+    })
   }
 
   renderGamesList(games) {
@@ -56,13 +64,13 @@ export default class Home extends Component {
             </h4>
           </ListGroupItem>
         )
-    );
+    )
   }
 
   handleGameClick = event => {
-    event.preventDefault();
-    this.props.history.push(event.currentTarget.getAttribute('href'));
-  };
+    event.preventDefault()
+    this.props.history.push(event.currentTarget.getAttribute('href'))
+  }
 
   renderLander() {
     return (
@@ -70,7 +78,7 @@ export default class Home extends Component {
         <h1>Gamer Fi</h1>
         <p>A game catalog.</p>
       </div>
-    );
+    )
   }
 
   renderGames() {
@@ -80,7 +88,7 @@ export default class Home extends Component {
           {!this.state.isLoading && this.renderGamesList(this.state.games)}
         </ListGroup>
       </div>
-    );
+    )
   }
 
   render() {
@@ -88,6 +96,6 @@ export default class Home extends Component {
       <div className="Home">
         {this.props.isAuthenticated ? this.renderGames() : this.renderLander()}
       </div>
-    );
+    )
   }
 }
