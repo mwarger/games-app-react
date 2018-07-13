@@ -74,14 +74,14 @@ export default class NewGame extends Component {
       <div className="NewGame">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="content">
+            <ControlLabel>Title</ControlLabel>
             <FormControl
               onChange={this.handleChange}
               value={this.state.content}
-              componentClass="textarea"
             />
           </FormGroup>
           <FormGroup controlId="file">
-            <ControlLabel>Attachment</ControlLabel>
+            <ControlLabel>Poster</ControlLabel>
             <FormControl onChange={this.handleFileChange} type="file" />
           </FormGroup>
           <LoaderButton

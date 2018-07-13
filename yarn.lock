@@ -205,17 +205,9 @@ amazon-cognito-auth-js@^1.1.9:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/amazon-cognito-auth-js/-/amazon-cognito-auth-js-1.2.0.tgz#637f044a3a6114d6d0a87b415157ea36f32431e8"
 
-amazon-cognito-identity-js@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-2.0.6.tgz#a98ab8df96e3f0205e0ddad5c75360fdfcd45e5b"
-  dependencies:
-    buffer "4.9.1"
-    crypto-browserify "1.0.9"
-    js-cookie "^2.1.4"
-
-amazon-cognito-identity-js@^2.0.9:
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-2.0.9.tgz#5a8fd6e97c513d753c14cc9e17091b105fb65d22"
+amazon-cognito-identity-js@^2.0.13:
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-2.0.13.tgz#47afd2fb4d5de56bc1c9a842bc5727003a16802a"
   dependencies:
     buffer "4.9.1"
     crypto-browserify "1.0.9"
@@ -408,41 +400,25 @@ autoprefixer@^6.3.1:
     postcss "^5.2.16"
     postcss-value-parser "^3.2.3"
 
-aws-amplify-react@^0.1.50:
-  version "0.1.50"
-  resolved "https://registry.yarnpkg.com/aws-amplify-react/-/aws-amplify-react-0.1.50.tgz#e2fbeff9506125e18f7e6bc0b05b5134dd404580"
+aws-amplify-react@^0.1.54:
+  version "0.1.54"
+  resolved "https://registry.yarnpkg.com/aws-amplify-react/-/aws-amplify-react-0.1.54.tgz#1ac5fefcc9441fc2f7eaea237f305c854611b516"
   dependencies:
-    aws-amplify "^0.4.4"
+    aws-amplify "^0.4.8"
     qrcode.react "^0.8.0"
     regenerator-runtime "^0.11.1"
 
-aws-amplify@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-0.4.1.tgz#e3b2d2a3496133a69550f56c0ada191acbbe3d7a"
+aws-amplify@^0.4.8:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-0.4.8.tgz#82b9028d80fa83597c25eaaeadbfcc3761d4d967"
   dependencies:
     "@types/paho-mqtt" "^1.0.3"
     "@types/zen-observable" "^0.5.3"
     amazon-cognito-auth-js "^1.1.9"
-    amazon-cognito-identity-js "^2.0.6"
+    amazon-cognito-identity-js "^2.0.13"
     aws-sdk "2.198.0"
     axios "^0.17.0"
-    graphql "0.13.0"
-    paho-mqtt "^1.0.4"
-    url "^0.11.0"
-    uuid "^3.2.1"
-    zen-observable "^0.8.6"
-
-aws-amplify@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-0.4.4.tgz#b1839c07dd2bcc93adbf9c53050650551154db85"
-  dependencies:
-    "@types/paho-mqtt" "^1.0.3"
-    "@types/zen-observable" "^0.5.3"
-    amazon-cognito-auth-js "^1.1.9"
-    amazon-cognito-identity-js "^2.0.9"
-    aws-sdk "2.198.0"
-    axios "^0.17.0"
-    graphql "0.13.0"
+    graphql "0.11.7"
     paho-mqtt "^1.0.4"
     url "^0.11.0"
     uuid "^3.2.1"
@@ -485,11 +461,7 @@ babel-code-frame@6.26.0, babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-core@7.0.0-bridge.0:
-  version "7.0.0-bridge.0"
-  resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-7.0.0-bridge.0.tgz#95a492ddd90f9b4e9a4a1da14eb335b87b634ece"
-
-babel-core@^6.0.0, babel-core@^6.25.0, babel-core@^6.26.0:
+babel-core@^6.0.0, babel-core@^6.25.0, babel-core@^6.26.0, babel-core@^6.26.3:
   version "6.26.3"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.3.tgz#b2e2f09e342d0f0c88e2f02e067794125e75c207"
   dependencies:
@@ -2885,17 +2857,17 @@ graphql-tag@^2.9.2:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.9.2.tgz#2f60a5a981375f430bf1e6e95992427dc18af686"
 
+graphql@0.11.7:
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.11.7.tgz#e5abaa9cb7b7cccb84e9f0836bf4370d268750c6"
+  dependencies:
+    iterall "1.1.3"
+
 graphql@0.12.3:
   version "0.12.3"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.12.3.tgz#11668458bbe28261c0dcb6e265f515ba79f6ce07"
   dependencies:
     iterall "1.1.3"
-
-graphql@0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.0.tgz#d1b44a282279a9ce0a6ec1037329332f4c1079b6"
-  dependencies:
-    iterall "1.1.x"
 
 growly@^1.3.0:
   version "1.3.0"
@@ -3028,9 +3000,9 @@ hoek@4.x.x:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
 
-hoist-non-react-statics@^2.3.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
+hoist-non-react-statics@^2.5.0:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -3214,7 +3186,7 @@ inquirer@5.0.0:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2:
+invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   dependencies:
@@ -3590,10 +3562,6 @@ istanbul-reports@^1.3.0:
 iterall@1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.3.tgz#1cbbff96204056dde6656e2ed2e2226d0e6d72c9"
-
-iterall@1.1.x:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.4.tgz#0db40d38fdcf53ae14dc8ec674e62ab190d52cfc"
 
 jest-changed-files@^22.4.3:
   version "22.4.3"
@@ -5194,7 +5162,7 @@ prop-types-extra@^1.0.1:
     react-is "^16.3.2"
     warning "^3.0.0"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.0, prop-types@^15.6.1:
+prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -5376,9 +5344,9 @@ react-dev-utils@^5.0.0:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^16.3.2:
-  version "16.3.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
+react-dom@^16.4.1:
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.1.tgz#7f8b0223b3a5fbe205116c56deb85de32685dad6"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -5416,37 +5384,38 @@ react-router-bootstrap@^0.24.4:
   dependencies:
     prop-types "^15.5.10"
 
-react-router-dom@^4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
+react-router-dom@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.3.1.tgz#4c2619fc24c4fa87c9fd18f4fb4a43fe63fbd5c6"
   dependencies:
     history "^4.7.2"
-    invariant "^2.2.2"
+    invariant "^2.2.4"
     loose-envify "^1.3.1"
-    prop-types "^15.5.4"
-    react-router "^4.2.0"
-    warning "^3.0.0"
+    prop-types "^15.6.1"
+    react-router "^4.3.1"
+    warning "^4.0.1"
 
-react-router@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.2.0.tgz#61f7b3e3770daeb24062dae3eedef1b054155986"
+react-router@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.3.1.tgz#aada4aef14c809cb2e686b05cee4742234506c4e"
   dependencies:
     history "^4.7.2"
-    hoist-non-react-statics "^2.3.0"
-    invariant "^2.2.2"
+    hoist-non-react-statics "^2.5.0"
+    invariant "^2.2.4"
     loose-envify "^1.3.1"
     path-to-regexp "^1.7.0"
-    prop-types "^15.5.4"
-    warning "^3.0.0"
+    prop-types "^15.6.1"
+    warning "^4.0.1"
 
-react-scripts-parcel@0.0.21:
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/react-scripts-parcel/-/react-scripts-parcel-0.0.21.tgz#ddb7489d43c2a55c208fc61bb2d64ea6046b5393"
+react-scripts-parcel@0.0.24:
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/react-scripts-parcel/-/react-scripts-parcel-0.0.24.tgz#ade7842853743d952e989499ffaee72e03c02939"
   dependencies:
     "@babel/core" "7.0.0-beta.46"
     "@babel/runtime" "7.0.0-beta.46"
-    babel-core "7.0.0-bridge.0"
+    babel-core "^6.26.3"
     babel-jest "^22.4.3"
+    babel-plugin-transform-class-properties "^6.24.1"
     babel-preset-react-app "^3.1.1"
     browserslist "2.11.3"
     chalk "2.3.0"
@@ -5473,9 +5442,9 @@ react-transition-group@^2.0.0, react-transition-group@^2.2.0:
     loose-envify "^1.3.1"
     prop-types "^15.6.1"
 
-react@^16.3.2:
-  version "16.3.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
+react@^16.4.1:
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -6645,6 +6614,12 @@ walker@~1.0.5:
 warning@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
+  dependencies:
+    loose-envify "^1.0.0"
+
+warning@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.1.tgz#66ce376b7fbfe8a887c22bdf0e7349d73d397745"
   dependencies:
     loose-envify "^1.0.0"
 

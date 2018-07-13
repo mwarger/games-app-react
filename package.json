@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aws-amplify": "^0.4.1",
-    "aws-amplify-react": "^0.1.50",
-    "react": "^16.3.2",
+    "aws-amplify": "^0.4.8",
+    "aws-amplify-react": "^0.1.54",
+    "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.3.2",
+    "react-dom": "^16.4.1",
     "react-router-bootstrap": "^0.24.4",
-    "react-router-dom": "^4.2.2",
-    "react-scripts-parcel": "0.0.21"
+    "react-router-dom": "^4.3.1",
+    "react-scripts-parcel": "0.0.24"
   },
   "scripts": {
     "start": "react-scripts-parcel start",

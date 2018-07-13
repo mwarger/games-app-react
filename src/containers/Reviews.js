@@ -2,6 +2,7 @@ import React from 'react'
 import Amplify, { graphqlOperation, Auth } from 'aws-amplify'
 import { Connect } from 'aws-amplify-react'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
+import NewReview from './NewReview'
 
 const ListReviews = `query ListReviews($gameId: ID!) {
   queryReviewsByGameId(gameId: $gameId){
@@ -20,23 +21,28 @@ export default ({ userId, gameId }) => {
   if (!userId || !gameId) return null
 
   return (
-    <Connect query={graphqlOperation(ListReviews, { gameId })}>
-      {({ data }) => {
-        console.log('data', data)
-        if (!data || !data.queryReviewsByGameId) return null
-        if (queryReviewsByGameId && queryReviewsByGameId.items.length > 0) {
-          return (
-            <ListGroup>
-              <h4>Reviews</h4>
-              {queryReviewsByGameId.items.map(item => (
-                <ListGroupItem>
-                  {item.author} - {item.rating}
-                </ListGroupItem>
-              ))}
-            </ListGroup>
-          )
-        }
-      }}
-    </Connect>
+    <React.Fragment>
+      <Connect query={graphqlOperation(ListReviews, { gameId })}>
+        {({ data }) => {
+          // console.log('data', data)
+          if (!data || !data.queryReviewsByGameId) return null
+
+          const { queryReviewsByGameId } = data
+
+          if (queryReviewsByGameId && queryReviewsByGameId.items.length > 0) {
+            return (
+              <ListGroup>
+                <h4>Reviews</h4>
+                {queryReviewsByGameId.items.map(item => (
+                  <ListGroupItem key={item.id}>
+                    {item.author || 'Anonymous'} - {item.rating}
+                  </ListGroupItem>
+                ))}
+              </ListGroup>
+            )
+          }
+        }}
+      </Connect>
+    </React.Fragment>
   )
 }
