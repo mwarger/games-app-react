@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
+import { Rehydrated } from 'aws-appsync-react'
+import { ApolloProvider } from 'react-apollo'
 
 import { BrowserRouter as Router } from 'react-router-dom'
 import Amplify, { Storage } from 'aws-amplify'
 import config from './config'
 import aws_exports from './aws-exports'
+import { client } from './appSyncClient'
 
 Amplify.configure(aws_exports)
 Storage.configure({ track: true })
@@ -37,9 +40,13 @@ Storage.configure({ track: true })
 // });
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <ApolloProvider client={client}>
+    <Rehydrated>
+      <Router>
+        <App />
+      </Router>
+    </Rehydrated>
+  </ApolloProvider>,
   document.getElementById('root')
 )
 // If you want your app to work offline and load faster, you can change
