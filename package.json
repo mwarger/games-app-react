@@ -9,6 +9,7 @@
     "aws-amplify": "^0.4.8",
     "aws-amplify-react": "^0.1.54",
     "aws-appsync-react": "^1.0.21",
+    "flow-bin": "^0.77.0",
     "lodash.merge": "^4.6.1",
     "react": "^16.4.1",
     "react-apollo": "^2.1.9",
@@ -22,7 +23,11 @@
     "start": "react-scripts-parcel start",
     "build": "react-scripts-parcel build",
     "test": "react-scripts-parcel test --env=jsdom",
-    "eject": "react-scripts-parcel eject"
+    "eject": "react-scripts-parcel eject",
+    "flow": "flow",
+    "glow": "glow --watch",
+    "introspect": "aws-appsync-codegen introspect-schema ./awsmobilejs/backend/appsync/schema.graphql --output schema.json",
+    "gentypes": "aws-appsync-codegen generate src/**/*.js --schema schema.json --target flow --output src/operation-result-types.flow.js --add-typename"
   },
   "browserslist": {
     "development": [
@@ -38,6 +43,8 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-transform-class-properties": "^6.24.1"
+    "aws-appsync-codegen": "^0.17.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "glow": "^1.2.2"
   }
 }
